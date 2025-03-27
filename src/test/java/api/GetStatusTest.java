@@ -39,8 +39,7 @@ public class GetStatusTest extends BaseTest {
 		Assert.assertEquals(response.getStatusCode(),200,"Status Code is not 200");
 		
 		// Validate response body
-		Assert.assertEquals(response.getBody().asString().contains("UP"),"Response body does not contain UP" );
-		
-		
+		Assert.assertTrue(response.getBody().asString().contains("UP"),"Response body does not contain UP" );
+				
 	}
 }
