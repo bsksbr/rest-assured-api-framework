@@ -1,12 +1,14 @@
-<suite name="Simple Grocery - API Test Suite" parallel="false">
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Simple Grocery - API Test Suite" parallel="none">
 	<listeners>
-		<listener class-name="utils.TestListener"/>
+		<listener class-name="utils.TestListener" />
 	</listeners>
-	
+
 	<test name="API Tests">
 		<classes>
-			<class name="api.GetStatusTest"/>
+			<class name="api.GetStatusTest" />
 		</classes>
 	</test>
-	
+
 </suite>

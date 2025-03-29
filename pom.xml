@@ -1,44 +1,115 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.api</groupId>
-  <artifactId>rest-assured-api-framework</artifactId>
-  <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>rest-assured-api-framework</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-    <!-- Rest Assured -->
-    <dependency>
-        <groupId>io.rest-assured</groupId>
-        <artifactId>rest-assured</artifactId>
-        <version>5.3.2</version>
-        <scope>test</scope>
-    </dependency>
-    
-    <!-- TestNG -->
-    <dependency>
-        <groupId>org.testng</groupId>
-        <artifactId>testng</artifactId>
-        <version>7.7.1</version>
-        <scope>test</scope>
-    </dependency>
-    
-    <!-- JSON Schema Validation -->
-    <dependency>
-        <groupId>io.rest-assured</groupId>
-        <artifactId>json-schema-validator</artifactId>
-        <version>5.3.2</version>
-    </dependency>
-    
-    
-    <!-- Extent Reports -->
-    <dependency>
-        <groupId>com.aventstack</groupId>
-        <artifactId>extentreports</artifactId>
-        <version>5.1.1</version>
-    </dependency>
-    
-    
-  </dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.api</groupId>
+	<artifactId>rest-assured-api-framework</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>rest-assured-api-framework</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+
+		<!-- Rest Assured -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>5.3.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- TestNG -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.8.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- JSON Schema Validation -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>5.3.2</version>
+		</dependency>
+
+		<!-- Extent Reports -->
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>5.1.1</version>
+		</dependency>
+
+
+		<!--
+We need Log4j2 for logging API test execution details. SLF4J (Simple Logging
+		Facade for Java) act as a bridge, 
+allowing Log4j2 to be used efficiently	
+ Why it is important? 
+ 	- slf4j-api  > Provides a logging interface that can work with multiple logging
+		frameworks 
+ 	- log4j-core > The main implementation of Log4j2 responsible for writing logs 
+ 	- log4j-api  > Provides the interface for Log4j2
+ 	
+ 	SLF4J act as UNIVESAL Remote that control different TVs (with name Log4j,
+		Logback, etc.)
+ 	
+Remote Control vs. TV
+
+SLF4J (slf4j-api)	-> Like a universal remote that can control different TVs.
+Log4j2 (log4j-core)	-> The actual TV that displays the content.
+Log4j2 (log4j-api)	-> A helper that provides additional functionalities to the
+		TV (not mandatory but useful).
+	
+ -->
+ 	<!-- This provides a standard logging interface that can be implemented by different logging frameworks -->
+   
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.9</version>
+		</dependency>
+	<!-- Log4j2 Core (Required for logging to work) -->
+    <!-- This is the core library that handles the actual logging operations -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.21.1</version>
+		</dependency>
+
+    <!-- Log4j2 API (Implementation) -->
+    <!-- Log4j2 provides a powerful logging mechanism -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.21.1</version>
+		</dependency>
+    <!-- SLF4J to Log4j2 Bridge -->
+    <!-- This connects SLF4J (interface) to Log4j2 (implementation) -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j2-impl</artifactId> <!-- I replaced log4j-slf4j-impl with log4j-slf4j2-impl. This is because log4j-slf4j-impl is for SLF4J 1.7.x, while log4j-slf4j2-impl is for SLF4J 2.x-->
+			<version>2.21.1</version>
+		</dependency>
+		
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- Maven Surefire Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M7</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
 </project>

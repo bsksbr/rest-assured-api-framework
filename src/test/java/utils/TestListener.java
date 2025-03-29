@@ -1,5 +1,7 @@
 package utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -9,12 +11,17 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
 /**
+ * A TestListener is a powerful mechanism used in test automation frameworks to track, modify, and control test execution events.
+ * 
  * Implements TestNG's ITestListener to generate ExtentReports for test
  * execution.
  */
 public class TestListener implements ITestListener {
-	private static ExtentReports extent = ExtentManager.getExtentReportInstance(); // Get the ExtentReports instance
+	// Get the ExtentReports instance
+	private static ExtentReports extent = ExtentManager.getExtentReportInstance();
 	private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+	private static final Logger logger = LoggerFactory.getLogger(TestListener.class);
+	
 
 	/**
 	 * Invoked each time before a test will be invoked. The <code>ITestResult</code>
@@ -26,6 +33,7 @@ public class TestListener implements ITestListener {
 	 */
 	@Override
 	public void onTestStart(ITestResult result) {
+		System.out.println("TestListener onStart triggered...");
 		ExtentTest extentTest = extent.createTest(result.getMethod().getMethodName());
 		test.set(extentTest);
 	}

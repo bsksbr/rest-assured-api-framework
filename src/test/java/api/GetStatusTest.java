@@ -4,6 +4,8 @@
 package api;
 
 import org.testng.Assert;
+import org.testng.TestListenerAdapter;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import io.restassured.response.Response;
@@ -13,6 +15,7 @@ import utils.RequestManager;
  *  GetStatusTest Class to verify API health/status using a GET request.
  *   
  */
+
 public class GetStatusTest extends BaseTest {
 	
 	/*

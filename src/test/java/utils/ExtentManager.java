@@ -41,7 +41,6 @@ public class ExtentManager {
 		String reportDir= "test-output/ExtentReports/"+timeStamp;
 		
 		
-		
         //  Ensure the directory exists before creating the report
         File reportFolder = new File(reportDir);
         if (!reportFolder.exists()) {
@@ -49,6 +48,7 @@ public class ExtentManager {
         }
 		
         String reportPath = reportDir + "/extent-report.html";
+        System.out.println("Report generated at: " + reportPath);
 		//	Initialize ExtentSparkReporter to generate the report
 		ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(reportPath);
 		extentSparkReporter.config().setDocumentTitle("***** Simple Grocery Store API *****"); // Title of the HTML report
