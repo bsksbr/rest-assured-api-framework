@@ -58,6 +58,10 @@ public class ExtentManager {
 		//	Create ExtentReports instance and attach the Spark Reporter.		
 		ExtentReports extentReport=new ExtentReports();
 		extentReport.attachReporter(extentSparkReporter);
+		//Add System information:  		
+		extentReport.setSystemInfo("Environment", "QA");
+		extentReport.setSystemInfo("Test Architect", "Senthil");
+		
 		return extentReport;
 	}
 
